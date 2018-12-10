@@ -26,14 +26,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
 app.config['PROPAGATE_EXCEPTIONS'] = True
 api = Api(app)
 
-
-@app.before_first_request
-def create_tables():
-    # Magic functionality knows table structure from importing model libs
-    # at run-time
-    db.create_all()
-
-
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Item, '/item/<string:name>')
@@ -47,6 +39,3 @@ if __name__ == '__main__' :
     from db import db
     db.init_app(app)
     app.run(port=5000, debug=True)
-elif __name__ == "app":
-    from db import db
-    db.init_app(app)
