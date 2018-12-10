@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_jwt import JWT
 from flask_restful import Api
@@ -21,7 +23,10 @@ app.secret_key = 'carlo'
 
 # Turns off Flask SQLAlchemy feature, favoring SQLAlchemy's own which is better
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+        'DATABASE_URL',
+        'sqlite:///data.db'
+)
 # Allow Flask to expose errors to client instead of being trapped by PyCharm
 app.config['PROPAGATE_EXCEPTIONS'] = True
 api = Api(app)
