@@ -1,5 +1,5 @@
 # flask-api-test
-A test of Flask API functionality based on a simeple store model
+A test of Flask API functionality based on a simple store model
 Based on the excellent tutorial by Jose Salvatierra
 
 ## Store

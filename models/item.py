@@ -34,6 +34,7 @@ class ItemModel(db.Model):
         :return:
         :rtype: ItemModel
         """
+
         return cls.query.filter_by(name=name).first()
 
     def save_to_db(self):

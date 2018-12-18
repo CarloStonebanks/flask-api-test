@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_jwt import JWT
 from flask_restful import Api
 
@@ -38,6 +38,11 @@ api.add_resource(ItemList, '/items')
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 if __name__ == '__main__' :
     # Avoid other package imports of db causing circular imports
