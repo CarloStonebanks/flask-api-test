@@ -44,6 +44,7 @@ api.add_resource(UserRegister, '/register')
 def home():
     return render_template('home.html')
 
+
 if __name__ == '__main__' :
     # Avoid other package imports of db causing circular imports
     from db import db
