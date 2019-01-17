@@ -8,8 +8,8 @@ class ItemModel(db.Model):
     name = db.Column(db.String(80))
     price = db.Column(db.Float(precision=2))
 
-    # Because we are declaring a foreign key column, a many to one model
-    # to Stores is assumed in StoreModel
+    # Because we are declaring a foreign key column,
+    # a many to one model to Stores is assumed in StoreModel
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
     store = db.relationship('StoreModel')
 
@@ -20,6 +20,7 @@ class ItemModel(db.Model):
 
     def json(self):
         return {
+            'id': self.id,
             'name': self.name,
             'price': self.price,
             'store_id': self.store_id
@@ -36,6 +37,10 @@ class ItemModel(db.Model):
         """
 
         return cls.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_all(cls):
+        return cls.query.all()
 
     def save_to_db(self):
         db.session.add(self)

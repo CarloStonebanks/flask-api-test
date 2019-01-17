@@ -13,14 +13,34 @@ class UserModel(db.Model):
         self.username = username
         self.password = password
 
+    def json(self):
+        return {
+            'id': self.id,
+            'username': self.username
+        }
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
     @classmethod
     def find_by_username(cls, username):
+        """
+        :param username: username
+        :return: user
+        :rtype: UserModel
+        """
         return cls.query.filter_by(username=username).first()
 
     @classmethod
     def find_by_id(cls, id_):
+        """
+        :param id_: db id
+        :return: user
+        :rtype: UserModel
+        """
         return cls.query.filter_by(id=id_).first()

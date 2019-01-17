@@ -5,7 +5,7 @@ from flask_jwt import JWT
 from flask_restful import Api
 
 from security import authenticate, identity
-from resources.user import UserRegister
+from resources.user import UserRegister, User
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
@@ -38,6 +38,7 @@ api.add_resource(ItemList, '/items')
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
+api.add_resource(User, '/user/<int:user_id>')
 
 
 @app.route('/')
@@ -45,7 +46,7 @@ def home():
     return render_template('home.html')
 
 
-if __name__ == '__main__' :
+if __name__ == '__main__':
     # Avoid other package imports of db causing circular imports
     from db import db
     db.init_app(app)
