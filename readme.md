@@ -1,14 +1,6 @@
 # flask-api-test
-A test of Flask API functionality based on a simple store model\
+A test of Flask API functionality based on a simple store model
 Based on the excellent tutorial by Jose Salvatierra
-
-## Updating the site
-cd /var/www/html/items-rest\
-git pull origin master\
-sudo systemctl stop nginx\
-sudo systemctl stop uwsgi_items_rest\
-sudo systemctl start uwsgi_items_rest\
-sudo systemctl start nginx\
 
 ## Store
 A simple store with items for sale, Name, Items
